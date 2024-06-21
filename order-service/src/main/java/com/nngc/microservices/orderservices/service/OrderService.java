@@ -44,7 +44,7 @@ log.info(orderRequest.getOrderLineItemsDto().toString());
        List<String> skuCodes = order.getOrderLineItems().stream().map(OrderLineItems::getSkuCode).toList();
         //Call inventory service and place order if product is in stock
       InventoryResponse[] result=  webClientBuilder.build()
-                .post()
+                .get()
                 .uri("http://localhost:8082/api/inventory/isInStock",
                         uriBuilder -> uriBuilder.queryParam("skuCode",skuCodes).build())
                 .retrieve()
