@@ -1,13 +1,11 @@
 package com.nngc.microservices.inventoryservice;
 
-import com.nngc.microservices.inventoryservice.entity.Inventory;
-import com.nngc.microservices.inventoryservice.repo.InventoryRepo;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class InventoryServiceApplication {
 
     public static void main(String[] args) {

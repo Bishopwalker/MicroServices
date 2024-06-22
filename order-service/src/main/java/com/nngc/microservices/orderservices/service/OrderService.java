@@ -1,6 +1,7 @@
 package com.nngc.microservices.orderservices.service;
 
 
+import com.nngc.microservices.orderservices.dto.InventoryResponse;
 import com.nngc.microservices.orderservices.dto.OrderLineItemsDto;
 import com.nngc.microservices.orderservices.dto.OrderRequest;
 import com.nngc.microservices.orderservices.entity.Order;
@@ -11,10 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
-import com.nngc.microservices.orderservices.dto.InventoryResponse;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-import java.util.Arrays;
 
 @RequiredArgsConstructor
 @Service
@@ -45,7 +46,7 @@ log.info(orderRequest.getOrderLineItemsDto().toString());
         //Call inventory service and place order if product is in stock
       InventoryResponse[] result=  webClientBuilder.build()
                 .get()
-                .uri("http://localhost:8082/api/inventory/isInStock",
+                .uri("http://inventory-service/api/inventory/isInStock",
                         uriBuilder -> uriBuilder.queryParam("skuCode",skuCodes).build())
                 .retrieve()
                 .bodyToMono(InventoryResponse[].class)
