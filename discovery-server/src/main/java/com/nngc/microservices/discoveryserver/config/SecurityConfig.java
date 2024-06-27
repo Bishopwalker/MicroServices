@@ -17,7 +17,6 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .anyRequest().authenticated()
                         .requestMatchers("/eureka/**").permitAll()
                         .anyRequest().permitAll()
                 );
